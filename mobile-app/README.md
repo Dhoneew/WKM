@@ -52,7 +52,14 @@ Pastikan perangkat pengembangan sudah memiliki:
 
 ## Screenshot Aplikasi
 
-Screenshot halaman onboarding akan ditambahkan pada bagian ini.
+### Onboarding 1
+![Onboarding 1](screenshots/Screenshot%202026-10-11%20214416.png)
+
+### Onboarding 2
+![Onboarding 2](screenshots/Screenshot%202026-10-11%20214428.png)
+
+### Onboarding 3
+![Onboarding 3](screenshots/Screenshot%202026-10-11%20214521.png)
 
 ## Status Pengembangan
 
