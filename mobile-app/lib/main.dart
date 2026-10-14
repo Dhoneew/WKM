@@ -1,13 +1,13 @@
-
 import 'package:flutter/material.dart';
-
+import 'login_page.dart';
+ 
 void main() {
   runApp(const MyApp());
 }
-
+ 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,23 +17,23 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+ 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
-
+ 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();
 }
-
+ 
 class _OnboardingPageState extends State<OnboardingPage> {
   int currentPage = 0;
-
+ 
   final List<String> titles = [
   'Ngopi Jadi Lebih Mudah',
   'Pesan Tanpa Antre',
   'Pantau Pesananmu',
 ];
-
+ 
 final List<String> descriptions = [
   'Pesan makanan dan minuman favoritmu\n'
       'langsung dari Wong Kito Mobile',
@@ -42,13 +42,19 @@ final List<String> descriptions = [
   'Lihat proses pesananmu sampai\n'
       'siap dinikmati',
 ];
-
+ 
 final List<String> images = [
   'assets/images/Onboarding1.png',
   'assets/images/Onboarding2.png',
   'assets/images/Onboarding3.png',
 ];
-
+ 
+  void _goToLogin() {
+  Navigator.of(context).pushReplacement(
+    MaterialPageRoute(builder: (context) => const LoginPage()),
+  );
+}
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,15 +65,15 @@ final List<String> images = [
           child: Column(
             children: [
               const SizedBox(height: 32),
-
+ 
               Image.asset(
                 'assets/images/Logo ada nama.png',
                 height: 100,
               ),
-
+ 
               
               const SizedBox(height: 28),
-
+ 
               Text(
                 titles[currentPage],
                 textAlign: TextAlign.center,
@@ -78,9 +84,9 @@ final List<String> images = [
                   color: Color(0xFF1A1C1C),
                 ),
               ),
-
+ 
                 const SizedBox(height: 8),
-
+ 
                 Text(
                   descriptions[currentPage],
                   textAlign: TextAlign.center,
@@ -90,15 +96,15 @@ final List<String> images = [
                     color: Color(0xFF1A1C1C),
                   ),
                 ),
-
+ 
                 const SizedBox(height: 20),
-
-
-
+ 
+ 
+ 
               const SizedBox(height: 8),
-
+ 
               const SizedBox(height: 20),
-
+ 
               Expanded(
                 child: Center(
                   child: Image.asset(
@@ -109,7 +115,7 @@ final List<String> images = [
                   ),
                 ),
               ),
-
+ 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -118,19 +124,19 @@ final List<String> images = [
                   _buildIndicator(currentPage == 2),
                 ],
               ),
-
+ 
               const SizedBox(height: 12),
-
+ 
               SizedBox(
                 width: double.infinity,
                 height: 44,
                 child: ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      if (currentPage < 2) {
-                        currentPage++;
-                      }
-                    });
+                    if (currentPage < 2) {
+                      setState(() => currentPage++);
+                    } else {
+                      _goToLogin();
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFF79F1A),
@@ -140,8 +146,8 @@ final List<String> images = [
                       borderRadius: BorderRadius.circular(7),
                     ),
                   ),
-                  child: const Text(
-                  'Selanjutnya',
+                  child: Text(
+                  currentPage < 2 ? 'Selanjutnya' : 'Mulai',
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.bold,
@@ -149,11 +155,11 @@ final List<String> images = [
                 ),
                 ),
               ),
-
+ 
               const SizedBox(height: 8),
-
+ 
               TextButton(
-                onPressed: () {},
+                onPressed: _goToLogin,
                 child: const Text(
                   'Lewati',
                   style: TextStyle(
@@ -169,7 +175,7 @@ final List<String> images = [
       ),
     );
   }
-
+ 
   Widget _buildIndicator(bool active) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
@@ -184,3 +190,4 @@ final List<String> images = [
     );
   }
 }
+ 
